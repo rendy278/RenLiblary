@@ -10,7 +10,7 @@ import {
   Outlet,
 } from "react-router-dom";
 import Login from "./pages/Login";
-import App from "./App";
+import App from "./page";
 import ProtectedRoute from "./middleware/ProtectedRoute";
 import { ThemeProvider } from "./hooks/useTheme";
 

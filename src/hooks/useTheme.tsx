@@ -1,19 +1,21 @@
+"use client";
 import {
   createContext,
   useState,
   useEffect,
   useContext,
   ReactNode,
+  FC,
 } from "react";
 
-interface ThemeContextProps {
+interface ThemeContextType {
   isNightMode: boolean;
   toggleNightMode: () => void;
 }
 
-const ThemeContext = createContext<ThemeContextProps | undefined>(undefined);
+const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
-export const useTheme = () => {
+export const useTheme = (): ThemeContextType => {
   const context = useContext(ThemeContext);
   if (!context) {
     throw new Error("useTheme must be used within a ThemeProvider");
@@ -25,20 +27,39 @@ interface ThemeProviderProps {
   children: ReactNode;
 }
 
-export const ThemeProvider = ({ children }: ThemeProviderProps) => {
-  const [isNightMode, setIsNightMode] = useState<boolean>(() => {
-    const storedValue = localStorage.getItem("isNightMode");
-    return storedValue ? JSON.parse(storedValue) : false;
-  });
+export const ThemeProvider: FC<ThemeProviderProps> = ({ children }) => {
+  const [isMounted, setIsMounted] = useState(false);
+  const [isNightMode, setIsNightMode] = useState<boolean>(true);
 
   useEffect(() => {
-    localStorage.setItem("isNightMode", JSON.stringify(isNightMode));
-    document.documentElement.classList.toggle("dark", isNightMode);
-  }, [isNightMode]);
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (isMounted && typeof window !== "undefined") {
+      const storedTheme = localStorage.getItem("isNightMode");
+      if (storedTheme) {
+        setIsNightMode(JSON.parse(storedTheme));
+      } else {
+        document.documentElement.classList.add("dark");
+      }
+    }
+  }, [isMounted]);
+
+  useEffect(() => {
+    if (isMounted) {
+      localStorage.setItem("isNightMode", JSON.stringify(isNightMode));
+      document.documentElement.classList.toggle("dark", isNightMode);
+    }
+  }, [isNightMode, isMounted]);
 
   const toggleNightMode = () => {
     setIsNightMode((prevMode) => !prevMode);
   };
+
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <ThemeContext.Provider value={{ isNightMode, toggleNightMode }}>
@@ -46,3 +67,5 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
     </ThemeContext.Provider>
   );
 };
+
+export default ThemeProvider;

@@ -10,10 +10,6 @@ const Footer: React.FC = () => {
         <div className="flex gap-y-1 flex-col items-start">
           <Logo />
           <p className="font-bold"> rendyyoshizawa@gmail.com</p>
-          <p className=" w-full md:w-[60%]">
-            Jl. Prima Dalam No.6 5, RT.6/RW.5, Tegal Alur, Kec. Kalideres, Kota
-            Jakarta Barat, Daerah Khusus Ibukota Jakarta 11820
-          </p>
         </div>
         <div className="flex flex-col items-center md:items-start mt-4 md:mt-0">
           <p className="text-lg font-bold">

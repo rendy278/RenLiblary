@@ -21,14 +21,16 @@ const Navbar = ({ handleLogout }: { handleLogout: () => void }) => {
       <div className="w-full flex justify-between items-center">
         <Logo />
         <div className="relative flex items-center gap-3">
+          <ToogleNightMode />
           <button
             onClick={toggleDropdown}
             className="p-2 rounded-full bg-white dark:bg-gray-800 dark:text-white text-sky-500"
           >
             <AiOutlineUser size={24} />
           </button>
+
           {dropdownOpen && (
-            <div className="absolute right-0 mt-2 w-48 bg-white rounded-md shadow-lg z-10">
+            <div className="absolute -right-2 top-14 mt-2 w-48 bg-white rounded-md shadow-lg z-10">
               <div className="p-4 border-b flex items-center gap-2 text-gray-700">
                 <div className="p-2 rounded-full bg-sky-500 text-white">
                   <AiOutlineUser size={20} />
@@ -43,7 +45,6 @@ const Navbar = ({ handleLogout }: { handleLogout: () => void }) => {
               </button>
             </div>
           )}
-          <ToogleNightMode />
         </div>
       </div>
     </nav>
