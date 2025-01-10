@@ -2,9 +2,10 @@ import { useRef, useEffect, useState } from "react";
 import { AiOutlineUser } from "react-icons/ai";
 import ToggleNightMode from "../components/ToogleNightMode";
 import Logo from "./Logo";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = ({ handleLogout }: { handleLogout: () => void }) => {
+  const navigate = useNavigate();
   const userDropdownRef = useRef<HTMLDivElement>(null);
   const [userDropdownOpen, setUserDropdownOpen] = useState(false);
   const [user, setUser] = useState({
@@ -25,7 +26,6 @@ const Navbar = ({ handleLogout }: { handleLogout: () => void }) => {
     }
   }, []);
 
-  // Handle click outside for user dropdown
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
       if (
@@ -44,7 +44,12 @@ const Navbar = ({ handleLogout }: { handleLogout: () => void }) => {
   }, []);
 
   const toggleUserDropdown = () => {
-    setUserDropdownOpen(true);
+    setUserDropdownOpen((prev) => !prev);
+  };
+
+  const handleNavigate = () => {
+    // Navigasi ke halaman "/settings"
+    navigate("/settings");
   };
 
   return (
@@ -75,8 +80,11 @@ const Navbar = ({ handleLogout }: { handleLogout: () => void }) => {
                 <p>Email: {user.userEmail || "Email"}</p>
                 <p>Password: {user.userPassword || "Password"}</p>
               </div>
-              <button className="w-full text-left p-3 text-sky-500 hover:bg-gray-100">
-                <Link to="/settings">Settings</Link>
+              <button
+                onClick={handleNavigate}
+                className="w-full text-left p-3 text-sky-500 hover:bg-gray-100"
+              >
+                Settings
               </button>
               <button
                 onClick={handleLogout}
