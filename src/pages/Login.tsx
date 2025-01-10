@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { getAccount } from "../controllers/AccountController";
+import Logo from "../components/Logo";
 
 type LoginState = {
   email: string;
@@ -58,7 +59,8 @@ const Login = () => {
     <section className="h-screen flex bg-slate-200 items-center justify-center w-full">
       <div className="container h-full flex-col p-6 flex items-center justify-center">
         <div className="rounded-xl w-full md:w-96 flex flex-col justify-center items-center gap-4 bg-sky-500 shadow-md">
-          <div className="bg-red-500 p-4 rounded-t-xl w-full">
+          <div className="bg-red-500 p-4 rounded-t-xl w-full flex justify-between items-center gap-2">
+            <Logo />
             <h1 className="font-bold text-white text-2xl">Login</h1>
           </div>
           <form

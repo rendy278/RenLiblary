@@ -49,7 +49,7 @@ const Navbar = ({ handleLogout }: { handleLogout: () => void }) => {
 
   return (
     <nav className="w-full p-4 bg-sky-500 text-white shadow-md">
-      <div className="w-full flex justify-between items-center">
+      <div className="w-full flex justify-between gap-3 items-center">
         <Logo />
         <div className="relative flex items-center gap-3">
           <ToggleNightMode />
