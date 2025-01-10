@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
+import { getAccount } from "../controllers/AccountController";
 
 type LoginState = {
   email: string;
@@ -34,23 +35,21 @@ const Login = () => {
     }));
   };
 
-  const handleLogin = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const validEmail = "rendyyoshizawa@gmail.com";
-    const validPassword = "rendy123";
-    const userName = "Rendy Yoshizawa";
+    const storedAccount = getAccount();
 
     if (
-      loginState.email === validEmail &&
-      loginState.password === validPassword
+      loginState.email === storedAccount.email &&
+      loginState.password === storedAccount.password
     ) {
       localStorage.setItem("isLoggedIn", "true");
-      localStorage.setItem("userName", userName);
+      setLoginState((prevState) => ({ ...prevState, message: "" }));
       navigate("/");
     } else {
       setLoginState((prevState) => ({
         ...prevState,
-        message: "Email atau password salah.",
+        message: "Email atau password salah",
       }));
     }
   };
@@ -63,7 +62,7 @@ const Login = () => {
             <h1 className="font-bold text-white text-2xl">Login</h1>
           </div>
           <form
-            onSubmit={handleLogin}
+            onSubmit={handleSubmit}
             className="w-full p-4 flex flex-col gap-5"
           >
             <div className="flex gap-3 flex-col">

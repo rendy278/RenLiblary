@@ -13,6 +13,7 @@ import Login from "./pages/Login";
 import App from "./page";
 import ProtectedRoute from "./middleware/ProtectedRoute";
 import { ThemeProvider } from "./hooks/useTheme";
+import SettingsProfile from "./pages/SettingsProfile";
 
 const MainLayout = ({ handleLogout }: { handleLogout: () => void }) => (
   <>
@@ -47,6 +48,7 @@ const Layout = () => {
           }
         >
           <Route index element={<App />} />
+          <Route path="/settings" element={<SettingsProfile />} />
         </Route>
 
         <Route
