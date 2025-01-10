@@ -36,7 +36,7 @@ const SettingsProfile = () => {
   };
 
   return (
-    <div className="w-full h-screen flex items-center justify-center">
+    <div className="w-full h-screen p-4 flex items-center justify-center">
       <div className="rounded-xl w-full md:w-96 flex flex-col justify-center items-center gap-4 bg-sky-500 shadow-md">
         <div className="bg-red-500 p-4 rounded-t-xl w-full">
           <h1 className="font-bold text-white text-2xl">Account Settings</h1>

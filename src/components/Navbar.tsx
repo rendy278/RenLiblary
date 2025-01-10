@@ -44,7 +44,7 @@ const Navbar = ({ handleLogout }: { handleLogout: () => void }) => {
   }, []);
 
   const toggleUserDropdown = () => {
-    setUserDropdownOpen((prev) => !prev);
+    setUserDropdownOpen(true);
   };
 
   return (
