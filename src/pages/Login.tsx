@@ -79,6 +79,9 @@ const Login = () => {
                 placeholder="email"
                 className="bg-slate-200 p-2 rounded-md outline-none"
               />
+              <small className="text-white font-bold mt-2">
+                Email: rendyyoshizawa@gmail.com
+              </small>
             </div>
             <div className="flex gap-3 flex-col">
               <label htmlFor="password" className="font-bold text-white">
@@ -104,6 +107,9 @@ const Login = () => {
                   )}
                 </span>
               </div>
+              <small className="text-white font-bold mt-2">
+                password: : rendy123
+              </small>
             </div>
             <div className="flex items-center justify-center">
               <button
